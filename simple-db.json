@@ -1,0 +1,166 @@
+{
+  "urls": {
+    "YkRXtC": {
+      "id": 1760214002102,
+      "short_code": "YkRXtC",
+      "original_url": "https://www.stackoverflow.com",
+      "created_at": "2025-10-11T20:20:02.102Z"
+    },
+    "ApQSAd": {
+      "id": 1760214517900,
+      "short_code": "ApQSAd",
+      "original_url": "https://www.nemzetisport.hu/magyar-valogatott/2025/10/marco-rossi-valahanyszor-palyara-lep-a-valogatott-az-infarktust-kockaztatom",
+      "created_at": "2025-10-11T20:28:37.900Z"
+    },
+    "FVwFwQ": {
+      "id": 1760214656898,
+      "short_code": "FVwFwQ",
+      "original_url": "https://www.example.com",
+      "created_at": "2025-10-11T20:30:56.898Z"
+    },
+    "7sj1fB": {
+      "id": 1760215177040,
+      "short_code": "7sj1fB",
+      "original_url": "https://www.test.com",
+      "created_at": "2025-10-11T20:39:37.040Z"
+    },
+    "86e4p7": {
+      "id": 1760215376365,
+      "short_code": "86e4p7",
+      "original_url": "https://www.final-test.com",
+      "created_at": "2025-10-11T20:42:56.365Z"
+    },
+    "fG0Zsd": {
+      "id": 1760215434138,
+      "short_code": "fG0Zsd",
+      "original_url": "https://www.wave-test.com",
+      "created_at": "2025-10-11T20:43:54.138Z"
+    },
+    "SncYvu": {
+      "id": 1760215523816,
+      "short_code": "SncYvu",
+      "original_url": "https://www.clean-test.com",
+      "created_at": "2025-10-11T20:45:23.816Z"
+    },
+    "zPXD3P": {
+      "id": 1760216661821,
+      "short_code": "zPXD3P",
+      "original_url": "https://www.aurora-test.com",
+      "created_at": "2025-10-11T21:04:21.821Z"
+    },
+    "hNR46q": {
+      "id": 1760216768481,
+      "short_code": "hNR46q",
+      "original_url": "https://www.updated-aurora.com",
+      "created_at": "2025-10-11T21:06:08.481Z"
+    },
+    "QA4ANt": {
+      "id": 1760216947220,
+      "short_code": "QA4ANt",
+      "original_url": "https://www.black-aurora.com",
+      "created_at": "2025-10-11T21:09:07.220Z"
+    },
+    "ruNM1R": {
+      "id": 1760217010020,
+      "short_code": "ruNM1R",
+      "original_url": "https://www.smooth-aurora.com",
+      "created_at": "2025-10-11T21:10:10.020Z"
+    },
+    "bxNLT7": {
+      "id": 1760217280245,
+      "short_code": "bxNLT7",
+      "original_url": "https://www.terminal-test.com",
+      "created_at": "2025-10-11T21:14:40.245Z"
+    },
+    "ehfM1h": {
+      "id": 1760217306467,
+      "short_code": "ehfM1h",
+      "original_url": "https://www.nemzetisport.hu/magyar-valogatott/2025/10/a-golszerzo-lukacs-daniel-es-gruber-zsombor-volt-a-mieink-legjobbja-az-ormenyek-ellen-nemzeti-sport-osztalyzatok",
+      "created_at": "2025-10-11T21:15:06.467Z"
+    },
+    "5KCrQB": {
+      "id": 1760217359154,
+      "short_code": "5KCrQB",
+      "original_url": "https://www.green-terminal.com",
+      "created_at": "2025-10-11T21:15:59.154Z"
+    },
+    "lULG1t": {
+      "id": 1760217750684,
+      "short_code": "lULG1t",
+      "original_url": "https://www.glassmorphism-test.com",
+      "created_at": "2025-10-11T21:22:30.684Z"
+    },
+    "362IWh": {
+      "id": 1760217914529,
+      "short_code": "362IWh",
+      "original_url": "https://www.black-buttons.com",
+      "created_at": "2025-10-11T21:25:14.529Z"
+    },
+    "RNdJwD": {
+      "id": 1760218110569,
+      "short_code": "RNdJwD",
+      "original_url": "https://www.black-inputs.com",
+      "created_at": "2025-10-11T21:28:30.569Z"
+    },
+    "C4c8lG": {
+      "id": 1760218188180,
+      "short_code": "C4c8lG",
+      "original_url": "https://www.no-icons.com",
+      "created_at": "2025-10-11T21:29:48.180Z"
+    },
+    "kEjc8b": {
+      "id": 1760289982005,
+      "short_code": "kEjc8b",
+      "original_url": "https://www.nemzetisport.hu/minden-mas-foci/2025/10/vb-selejtezok-lelepett-az-edzotaborbol-a-torokok-kapusa",
+      "created_at": "2025-10-12T17:26:22.005Z"
+    }
+  },
+  "clicks": {
+    "YkRXtC": [
+      {
+        "id": 1760214012913,
+        "short_code": "YkRXtC",
+        "clicked_at": "2025-10-11T20:20:12.913Z",
+        "user_agent": "curl/8.7.1",
+        "ip_address": "::1",
+        "referer": null
+      }
+    ],
+    "ApQSAd": [
+      {
+        "id": 1760214538542,
+        "short_code": "ApQSAd",
+        "clicked_at": "2025-10-11T20:28:58.542Z",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+        "ip_address": "::1",
+        "referer": null
+      }
+    ],
+    "kEjc8b": [
+      {
+        "id": 1760289997307,
+        "short_code": "kEjc8b",
+        "clicked_at": "2025-10-12T17:26:37.307Z",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+        "ip_address": "::1",
+        "referer": null
+      },
+      {
+        "id": 1760290022494,
+        "short_code": "kEjc8b",
+        "clicked_at": "2025-10-12T17:27:02.494Z",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+        "ip_address": "::1",
+        "referer": null
+      },
+      {
+        "id": 1760290052909,
+        "short_code": "kEjc8b",
+        "clicked_at": "2025-10-12T17:27:32.909Z",
+        "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+        "ip_address": "::1",
+        "referer": null
+      }
+    ]
+  }
+}

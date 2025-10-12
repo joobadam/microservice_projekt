@@ -68,7 +68,7 @@ function App() {
     <div className="min-h-screen relative flex items-center justify-center p-4">
       <div className="absolute inset-0">
         <FaultyTerminal
-          scale={1.9}
+          scale={2.5}
           gridMul={[2, 1]}
           digitSize={1.2}
           timeScale={1}

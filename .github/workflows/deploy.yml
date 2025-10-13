@@ -1,0 +1,57 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "k8s/**"
+      - ".github/workflows/deploy.yml"
+
+permissions:
+  id-token: write
+  contents: read
+
+env:
+  AWS_REGION: ${{ vars.AWS_REGION }}
+  AWS_ROLE_ARN: ${{ vars.AWS_ROLE_ARN }}
+  K8S_NAMESPACE: urlshortener
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v4
+        with:
+          version: "latest"
+
+      - name: Update kubeconfig
+        run: aws eks update-kubeconfig --region "$AWS_REGION" --name "${{ vars.EKS_CLUSTER_NAME }}"
+
+      - name: Create namespace
+        run: |
+          kubectl get ns $K8S_NAMESPACE || kubectl create ns $K8S_NAMESPACE
+
+      - name: Apply Kubernetes manifests
+        run: |
+          kubectl apply -f k8s/namespace.yaml
+          kubectl apply -f k8s/secrets.yaml
+          kubectl apply -f k8s/postgres-statefulset.yaml
+          kubectl apply -f k8s/postgres-service.yaml
+          kubectl apply -f k8s/shortener-deployment.yaml
+          kubectl apply -f k8s/redirect-deployment.yaml
+          kubectl apply -f k8s/analytics-deployment.yaml
+          kubectl apply -f k8s/frontend-deployment.yaml
+          kubectl apply -f k8s/ingress.yaml
+
+      - name: Show services
+        run: kubectl get pods,svc,ingress -n $K8S_NAMESPACE --show-labels

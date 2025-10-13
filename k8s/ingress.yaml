@@ -1,0 +1,55 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: urlshortener
+  namespace: urlshortener
+  annotations:
+    kubernetes.io/ingress.class: alb
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: ip
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /api/shorten
+            pathType: Prefix
+            backend:
+              service:
+                name: shortener-service
+                port:
+                  number: 5000
+          - path: /api/url
+            pathType: Prefix
+            backend:
+              service:
+                name: shortener-service
+                port:
+                  number: 5000
+          - path: /api/stats
+            pathType: Prefix
+            backend:
+              service:
+                name: analytics-service
+                port:
+                  number: 5002
+          - path: /api/track
+            pathType: Prefix
+            backend:
+              service:
+                name: analytics-service
+                port:
+                  number: 5002
+          - path: /api/top
+            pathType: Prefix
+            backend:
+              service:
+                name: analytics-service
+                port:
+                  number: 5002
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80

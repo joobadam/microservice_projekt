@@ -58,7 +58,8 @@ jobs:
       - name: Build and push shortener-service
         uses: docker/build-push-action@v6
         with:
-          context: ./shortener-service
+          context: .
+          file: ./shortener-service/Dockerfile
           push: true
           tags: ${{ steps.meta_shortener.outputs.tags }}
           labels: ${{ steps.meta_shortener.outputs.labels }}
@@ -72,7 +73,8 @@ jobs:
       - name: Build and push redirect-service
         uses: docker/build-push-action@v6
         with:
-          context: ./redirect-service
+          context: .
+          file: ./redirect-service/Dockerfile
           push: true
           tags: ${{ steps.meta_redirect.outputs.tags }}
           labels: ${{ steps.meta_redirect.outputs.labels }}
@@ -86,7 +88,8 @@ jobs:
       - name: Build and push analytics-service
         uses: docker/build-push-action@v6
         with:
-          context: ./analytics-service
+          context: .
+          file: ./analytics-service/Dockerfile
           push: true
           tags: ${{ steps.meta_analytics.outputs.tags }}
           labels: ${{ steps.meta_analytics.outputs.labels }}

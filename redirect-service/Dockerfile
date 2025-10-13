@@ -7,8 +7,8 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 COPY src/ ./src/
-COPY ../file-db.js ./
-COPY ../simple-db.json ./
+COPY file-db.js ./
+COPY simple-db.json ./
 
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nodejs -u 1001

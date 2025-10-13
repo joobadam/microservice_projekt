@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: frontend
+            workdir: frontend
+          - name: shortener-service
+            workdir: shortener-service
+          - name: redirect-service
+            workdir: redirect-service
+          - name: analytics-service
+            workdir: analytics-service
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: npm
+          cache-dependency-path: |
+            frontend/package-lock.json
+            shortener-service/package-lock.json
+            redirect-service/package-lock.json
+            analytics-service/package-lock.json
+      - name: Install deps
+        working-directory: ${{ matrix.workdir }}
+        run: npm ci
+      - name: Build
+        working-directory: ${{ matrix.workdir }}
+        run: |
+          if [ -f package.json ] && jq -er '.scripts.build' package.json > /dev/null; then
+            npm run build
+          else
+            echo "No build script, skipping"
+          fi

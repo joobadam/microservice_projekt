@@ -1,0 +1,92 @@
+name: Docker Publish
+
+on:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+  packages: write
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME_FRONTEND: ${{ github.repository }}-frontend
+  IMAGE_NAME_SHORTENER: ${{ github.repository }}-shortener
+  IMAGE_NAME_REDIRECT: ${{ github.repository }}-redirect
+  IMAGE_NAME_ANALYTICS: ${{ github.repository }}-analytics
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to the Container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata (tags, labels) for frontend
+        id: meta_frontend
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_FRONTEND }}
+
+      - name: Build and push frontend
+        uses: docker/build-push-action@v6
+        with:
+          context: ./frontend
+          push: true
+          tags: ${{ steps.meta_frontend.outputs.tags }}
+          labels: ${{ steps.meta_frontend.outputs.labels }}
+
+      - name: Extract metadata (tags, labels) for shortener-service
+        id: meta_shortener
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_SHORTENER }}
+
+      - name: Build and push shortener-service
+        uses: docker/build-push-action@v6
+        with:
+          context: ./shortener-service
+          push: true
+          tags: ${{ steps.meta_shortener.outputs.tags }}
+          labels: ${{ steps.meta_shortener.outputs.labels }}
+
+      - name: Extract metadata (tags, labels) for redirect-service
+        id: meta_redirect
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_REDIRECT }}
+
+      - name: Build and push redirect-service
+        uses: docker/build-push-action@v6
+        with:
+          context: ./redirect-service
+          push: true
+          tags: ${{ steps.meta_redirect.outputs.tags }}
+          labels: ${{ steps.meta_redirect.outputs.labels }}
+
+      - name: Extract metadata (tags, labels) for analytics-service
+        id: meta_analytics
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME_ANALYTICS }}
+
+      - name: Build and push analytics-service
+        uses: docker/build-push-action@v6
+        with:
+          context: ./analytics-service
+          push: true
+          tags: ${{ steps.meta_analytics.outputs.tags }}
+          labels: ${{ steps.meta_analytics.outputs.labels }}

@@ -78,12 +78,28 @@ app.get('/api/stats/:shortCode', async (req, res) => {
       });
     }
 
-    const stats = await getStats(shortCode);
-    
+    let stats = await getStats(shortCode);
+    // Fallback: if not present locally, verify existence via shortener-service
     if (!stats) {
-      return res.status(404).json({ 
-        error: 'Rövid URL nem található' 
-      });
+      try {
+        const shortenerUrl = process.env.SHORTENER_SERVICE_URL || 'http://shortener-service:5000';
+        const resp = await fetch(`${shortenerUrl}/api/url/${shortCode}`, { method: 'GET', timeout: 2000 });
+        if (resp.ok) {
+          const data = await resp.json();
+          stats = {
+            shortCode: shortCode,
+            originalUrl: data.originalUrl,
+            createdAt: data.createdAt || new Date().toISOString(),
+            clickCount: 0,
+            lastClickedAt: null
+          };
+        }
+      } catch (_) {
+        // ignore fallback error
+      }
+    }
+    if (!stats) {
+      return res.status(404).json({ error: 'Rövid URL nem található' });
     }
 
     global.requestCount = (global.requestCount || 0) + 1;

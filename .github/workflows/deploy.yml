@@ -45,7 +45,7 @@ jobs:
         run: |
           kubectl apply -f k8s/namespace.yaml
           kubectl apply -f k8s/secrets.yaml
-          kubectl apply -f k8s/postgres-statefulset.yaml
+          kubectl get statefulset postgres -n $K8S_NAMESPACE || kubectl apply -f k8s/postgres-statefulset.yaml
           kubectl apply -f k8s/postgres-service.yaml
           kubectl apply -f k8s/shortener-deployment.yaml
           kubectl apply -f k8s/redirect-deployment.yaml

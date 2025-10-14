@@ -60,8 +60,20 @@ app.get('/r/:shortCode', async (req, res) => {
       if (urlData) {
         originalUrl = urlData.original_url;
         source = 'database';
-        
         await setCache(shortCode, originalUrl, 3600);
+      } else {
+        // Fallback: ask shortener-service over HTTP so services don't need shared storage
+        try {
+          const shortenerUrl = process.env.SHORTENER_SERVICE_URL || 'http://shortener-service:5000';
+          const resp = await axios.get(`${shortenerUrl}/api/url/${shortCode}`, { timeout: 2000 });
+          if (resp?.data?.originalUrl) {
+            originalUrl = resp.data.originalUrl;
+            source = 'shortener-api';
+            await setCache(shortCode, originalUrl, 3600);
+          }
+        } catch (apiErr) {
+          // ignore; will return 404 below
+        }
       }
     }
 

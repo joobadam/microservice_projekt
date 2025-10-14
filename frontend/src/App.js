@@ -45,10 +45,34 @@ function App() {
 
   const copyToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(shortUrl);
-      alert('URL copied to clipboard!');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(shortUrl);
+        alert('URL copied to clipboard!');
+      } else {
+        // Fallback for HTTP or older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = shortUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('URL copied to clipboard!');
+      }
     } catch (err) {
       console.error('Copy failed:', err);
+      // Fallback for HTTP or older browsers
+      try {
+        const textArea = document.createElement('textarea');
+        textArea.value = shortUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        alert('URL copied to clipboard!');
+      } catch (fallbackErr) {
+        console.error('Fallback copy failed:', fallbackErr);
+        alert('Failed to copy URL. Please copy manually: ' + shortUrl);
+      }
     }
   };
 

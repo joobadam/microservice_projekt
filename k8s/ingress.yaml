@@ -46,10 +46,31 @@ spec:
                 name: analytics-service
                 port:
                   number: 5002
-          - path: /
+          - path: /api/redirect
+            pathType: Prefix
+            backend:
+              service:
+                name: redirect-service
+                port:
+                  number: 5001
+          - path: /static
             pathType: Prefix
             backend:
               service:
                 name: frontend
                 port:
                   number: 80
+          - path: /favicon.ico
+            pathType: Exact
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: redirect-service
+                port:
+                  number: 5001

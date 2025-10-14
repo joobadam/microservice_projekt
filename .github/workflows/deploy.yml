@@ -45,6 +45,8 @@ jobs:
         run: |
           kubectl apply -f k8s/namespace.yaml
           kubectl apply -f k8s/secrets.yaml
+          # Clean broken last-applied annotation from redirect deployment if present
+          kubectl -n $K8S_NAMESPACE annotate deployment redirect-service kubectl.kubernetes.io/last-applied-configuration- || true
           kubectl get statefulset postgres -n $K8S_NAMESPACE || kubectl apply -f k8s/postgres-statefulset.yaml
           kubectl apply -f k8s/postgres-service.yaml
           kubectl apply -f k8s/shortener-deployment.yaml

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import FaultyTerminal from './components/FaultyTerminal';
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://shortener-service:5000';
 
 function App() {
   const [longUrl, setLongUrl] = useState('');
@@ -57,7 +57,7 @@ function App() {
     
     const shortCode = shortUrl.split('/').pop();
     try {
-      const response = await axios.get(`${API_BASE_URL.replace('5000', '5002')}/api/stats/${shortCode}`);
+      const response = await axios.get(`http://analytics-service:5002/api/stats/${shortCode}`);
       setStats(response.data);
     } catch (err) {
       console.error('Failed to fetch statistics:', err);

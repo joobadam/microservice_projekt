@@ -1,5 +1,5 @@
 // Mock database for local development without PostgreSQL
-const fileDb = require('../../../file-db');
+const fileDb = require('../../file-db');
 
 async function connectDB() {
   console.log('✅ Mock Database connected (no PostgreSQL needed)');

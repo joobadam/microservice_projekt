@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/joobadam/microservice_projekt-redirect:latest
+          image: ghcr.io/joobadam/microservice_projekt-redirect:main
           ports:
             - containerPort: 5001
           env:
@@ -40,10 +40,10 @@ spec:
               value: redis
             - name: REDIS_PORT
               value: "6379"
-        - name: SHORTENER_SERVICE_URL
-          value: http://shortener-service:5000
-        - name: ANALYTICS_SERVICE_URL
-          value: http://analytics-service:5002
+            - name: SHORTENER_SERVICE_URL
+              value: http://shortener-service:5000
+            - name: ANALYTICS_SERVICE_URL
+              value: http://analytics-service:5002
           readinessProbe:
             httpGet:
               path: /health

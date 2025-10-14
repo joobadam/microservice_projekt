@@ -83,7 +83,7 @@ app.get('/api/stats/:shortCode', async (req, res) => {
     if (!stats) {
       try {
         const shortenerUrl = process.env.SHORTENER_SERVICE_URL || 'http://shortener-service:5000';
-        const resp = await fetch(`${shortenerUrl}/api/url/${shortCode}`, { method: 'GET', timeout: 2000 });
+        const resp = await fetch(`${shortenerUrl}/api/url/${shortCode}`);
         if (resp.ok) {
           const data = await resp.json();
           stats = {

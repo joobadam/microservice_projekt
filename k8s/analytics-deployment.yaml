@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: app
-          image: ghcr.io/joobadam/microservice_projekt-analytics:latest
+          image: ghcr.io/joobadam/microservice_projekt-analytics:main
           ports:
             - containerPort: 5002
           env:

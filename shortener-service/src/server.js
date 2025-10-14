@@ -46,7 +46,7 @@ app.post('/api/shorten', async (req, res) => {
 
     const existingUrl = await getUrlByCode(null, url);
     if (existingUrl) {
-      const shortUrl = `${process.env.BASE_URL || 'http://localhost:5001'}/${existingUrl.short_code}`;
+      const shortUrl = `${process.env.BASE_URL || 'http://localhost:5001'}/r/${existingUrl.short_code}`;
       return res.json({ 
         shortUrl,
         originalUrl: url,
@@ -74,7 +74,7 @@ app.post('/api/shorten', async (req, res) => {
     
     await setCache(shortCode, url, 3600);
 
-    const shortUrl = `${process.env.BASE_URL || 'http://localhost:5001'}/${shortCode}`;
+    const shortUrl = `${process.env.BASE_URL || 'http://localhost:5001'}/r/${shortCode}`;
     
     global.requestCount = (global.requestCount || 0) + 1;
 

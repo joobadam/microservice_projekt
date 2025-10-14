@@ -37,7 +37,7 @@ app.get('/metrics', (req, res) => {
           'url_redirect_cache_hits_total ' + (global.cacheHits || 0) + '\n');
 });
 
-app.get('/:shortCode', async (req, res) => {
+app.get('/r/:shortCode', async (req, res) => {
   try {
     const { shortCode } = req.params;
     
